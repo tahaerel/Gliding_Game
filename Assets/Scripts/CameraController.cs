@@ -4,7 +4,6 @@ using Cinemachine;
 public class CameraController : MonoBehaviour
 {
     public CinemachineVirtualCamera virtualCamera;
-    public float smoothingSpeed = 1.0f; // Daha düşük değer daha yavaş geçiş sağlar
     private Vector3 targetFollowOffset;
     private Vector3 currentVelocity; // SmoothDamp için gerekli değişken
     private bool hasReset = false;

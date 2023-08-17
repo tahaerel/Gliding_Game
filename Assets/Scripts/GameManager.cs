@@ -10,7 +10,7 @@ public enum GameStatus
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    public GameObject Rocketball;
     public GameStatus currentStatus;
     private void Awake()
     {
@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStatus.Fly:
                 // Fly durumu
-
+                Rocketball.GetComponent<Animator>().enabled = true;
+                Rocketball.GetComponent<BallController>().enabled = true;
                 break;
             case GameStatus.Death:
                 // Death durumu
