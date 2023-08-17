@@ -14,7 +14,7 @@ public class StickController : MonoBehaviour
     private float initialTouchPosition;
     private float swipeDelta;
     private float swerveAmount = 0.0f;
-
+    public Rigidbody ballRigidbody;
     public bool IsStickReleased { get; private set; }
 
     private void Awake()
@@ -24,6 +24,8 @@ public class StickController : MonoBehaviour
 
     private void Start()
     {
+       
+
         Application.targetFrameRate = 60;
 
         StickAnimation["Armature|Bend_Stick"].speed = 0;
@@ -39,10 +41,7 @@ public class StickController : MonoBehaviour
             {
                 HandleStickBending();
             }
-            else
-            {
-                GameManager.instance.ChangeGameStatus(GameStatus.Fly);
-            }
+        
         }
     }
 
@@ -70,10 +69,11 @@ public class StickController : MonoBehaviour
                     break;
 
                 case TouchPhase.Ended:
+                    FlingBall();
                     AdjustStickAnimationFrame(Mathf.Abs(swerveAmount) * StickAnimation["Armature|Bend_Stick"].length);
                     if (StickAnimation["Armature|Bend_Stick"].time > 0.037f)
                     {
-                        ReleaseForce = Mathf.Clamp(Mathf.Abs(swerveAmount), 0.1f, 1.2f);
+                        ReleaseForce = Mathf.Clamp(Mathf.Abs(swerveAmount*10), 1f, 10f);
                         swipeDelta = 0;
                         StickAnimation["Armature|Bend_Stick"].speed = 1;
                         StickAnimation.Play("Armature|Release_Stick");
@@ -83,7 +83,22 @@ public class StickController : MonoBehaviour
             }
         }
     }
+    public void FlingBall()
+    {
 
+        Vector3 throwDirection = -swipeDirection.normalized;
+        if (ballRigidbody != null)
+        {
+            Debug.Log("fırlatma");
+            GameManager.instance.ChangeGameStatus(GameStatus.Fly);
+            ballRigidbody.gameObject.transform.parent = null;
+            ballRigidbody.AddForce(transform.forward *100, ForceMode.Impulse);
+         
+
+
+
+        }
+    }
     public void AdjustStickAnimationFrame(float time)
     {
         StickAnimation["Armature|Bend_Stick"].time = time;

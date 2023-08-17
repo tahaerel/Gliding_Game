@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public GameStatus currentStatus;
 
+
+
     private void Awake()
     {
         if (instance == null)
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStatus.Fly:
                 // Fly durumu
+
                 break;
             case GameStatus.Death:
                 // Death durumu
