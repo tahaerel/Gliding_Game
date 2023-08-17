@@ -60,7 +60,7 @@ public class StickController : MonoBehaviour
                 case TouchPhase.Moved:
                 case TouchPhase.Stationary:
                     swipeDelta = touch.position.x - initialTouchPosition;
-                    swerveAmount = swipeDirection.x * 0.016f;
+                    swerveAmount = swipeDirection.x * 0.01f;
                     swipeDirection.x = swipeDelta * SlideSpeed;
                     if (swipeDirection.x < 0)
                     {
@@ -69,11 +69,13 @@ public class StickController : MonoBehaviour
                     break;
 
                 case TouchPhase.Ended:
-                    FlingBall();
+                  
                     AdjustStickAnimationFrame(Mathf.Abs(swerveAmount) * StickAnimation["Armature|Bend_Stick"].length);
                     if (StickAnimation["Armature|Bend_Stick"].time > 0.037f)
                     {
                         ReleaseForce = Mathf.Clamp(Mathf.Abs(swerveAmount*10), 1f, 10f);
+                        Debug.Log("release 1 =" + ReleaseForce);
+                        FlightBall();
                         swipeDelta = 0;
                         StickAnimation["Armature|Bend_Stick"].speed = 1;
                         StickAnimation.Play("Armature|Release_Stick");
@@ -83,17 +85,20 @@ public class StickController : MonoBehaviour
             }
         }
     }
-    public void FlingBall()
+    public void FlightBall()
     {
 
         Vector3 throwDirection = -swipeDirection.normalized;
         if (ballRigidbody != null)
         {
-            Debug.Log("fırlatma");
+            ballRigidbody.velocity = throwDirection;
+            ballRigidbody.isKinematic = false;
+
+            Debug.Log("fırlatma"+"release force = "+ReleaseForce);
             GameManager.instance.ChangeGameStatus(GameStatus.Fly);
             ballRigidbody.gameObject.transform.parent = null;
-            ballRigidbody.AddForce(transform.forward *100, ForceMode.Impulse);
-         
+            ballRigidbody.AddForce(transform.up* 10 * ReleaseForce, ForceMode.Impulse);
+            ballRigidbody.AddForce(transform.forward * 10 * ReleaseForce, ForceMode.Impulse);
 
 
 

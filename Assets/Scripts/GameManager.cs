@@ -12,9 +12,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameStatus currentStatus;
-
-
-
     private void Awake()
     {
         if (instance == null)
@@ -62,4 +59,5 @@ public class GameManager : MonoBehaviour
     {
         SetGameStatus(newStatus);
     }
+
 }
