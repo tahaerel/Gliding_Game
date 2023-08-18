@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
-
+/// <summary>
+/// Updates a TextMeshProUGUI component to display the frames per second (FPS).
+/// </summary>
 public class ShowFps : MonoBehaviour
 {
     public TextMeshProUGUI fpsText;

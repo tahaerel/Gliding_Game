@@ -1,38 +1,42 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Generates and spawns obstacles in the game world.
+/// </summary>
 public class ObstacleGenerator : MonoBehaviour
 {
-    [SerializeField] private float xLimit = 200f;
-    [SerializeField] private float zLimit = 1000f;
-    [SerializeField] private List<Transform> obstaclePrefabs = new List<Transform>();
-    [SerializeField] private LayerMask obstacleLayer;
-    [SerializeField] private float checkRadius = 38f;
-    public float minDistanceBetweenObstacles = 10f; // Minimum uzaklýk
+    [SerializeField] private float xLimit = 200f; 
+    [SerializeField] private float zLimit = 1000f; 
+    [SerializeField] private List<Transform> obstaclePrefabs = new List<Transform>(); // List of obstacle prefabs to spawn
+    [SerializeField] private LayerMask obstacleLayer; // Layer mask for obstacle collision detection
+    [SerializeField] private float checkRadius = 38f; // Radius to check for obstacles before spawning
+    public float minDistanceBetweenObstacles = 10f; 
 
-    public int totalObstacles = 500;
-    private const int maxSpawnAttempts = 100;
+    public int totalObstacles = 500; 
+    private const int maxSpawnAttempts = 100; 
 
     private void Start()
     {
-        SpawnObstacles();
+        SpawnObstacles(); // Start spawning obstacles when the script is initialized
     }
 
     private void SpawnObstacles()
     {
-        int obstaclesSpawned = 0;
-        List<Vector3> obstaclePositions = new List<Vector3>(); // Saklanan pozisyonlar
+        int obstaclesSpawned = 0; 
+        List<Vector3> obstaclePositions = new List<Vector3>(); // List to store the positions of spawned obstacles
 
+        // Keep spawning obstacles until the desired number is reached
         while (obstaclesSpawned < totalObstacles)
         {
-            int spawnAttempt = 0;
-            bool spawnSuccessful = false;
+            int spawnAttempt = 0; 
+            bool spawnSuccessful = false; // Flag to track successful spawns
 
+            // Try to spawn an obstacle up to the maximum spawn attempts
             while (spawnAttempt < maxSpawnAttempts)
             {
-                Vector3 randomPos = GetRandomPoint();
+                Vector3 randomPos = GetRandomPoint(); 
 
-                // Yeni pozisyonun daha önce spawn edilen nesnelerle minimum uzaklýkta olup olmadýðýný kontrol et
+                // Check if the new position is far enough from existing obstacles
                 bool isFarEnough = true;
                 foreach (Vector3 obstaclePos in obstaclePositions)
                 {
@@ -43,6 +47,7 @@ public class ObstacleGenerator : MonoBehaviour
                     }
                 }
 
+                // Check if the new position is spawnable
                 if (isFarEnough && IsSpawnable(randomPos))
                 {
                     Transform prefabToSpawn = GetRandomObstacle();
@@ -50,10 +55,10 @@ public class ObstacleGenerator : MonoBehaviour
 
                     Transform spawnedObstacle = Instantiate(prefabToSpawn, randomPos, Quaternion.identity);
                     spawnedObstacle.localScale = randomScale;
-                    obstaclesSpawned++;
+                    obstaclesSpawned++; 
                     spawnSuccessful = true;
 
-                    // Spawn edilen nesnenin pozisyonunu sakla
+                    // Store the position of the spawned obstacle
                     obstaclePositions.Add(randomPos);
 
                     break;
@@ -72,24 +77,25 @@ public class ObstacleGenerator : MonoBehaviour
 
     private Transform GetRandomObstacle()
     {
-        return obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)];
+        return obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)]; // Return a random obstacle prefab from the list
     }
 
     private bool IsSpawnable(Vector3 pos)
     {
-        Collider[] colliders = Physics.OverlapSphere(pos, checkRadius, obstacleLayer);
-        return colliders.Length == 0;
+        Collider[] colliders = Physics.OverlapSphere(pos, checkRadius, obstacleLayer); // Check for colliders within the given radius
+        return colliders.Length == 0; 
     }
 
     private Vector3 GetRandomPoint()
     {
+        // Generate a random position within the specified limits
         return new Vector3(Random.Range(-xLimit, xLimit), Random.Range(-2f, 6f), Random.Range(3f, zLimit));
     }
 
     private Vector3 GetRandomScale()
     {
-        float scaleMultiplierx = Random.Range(10f, 20f);
-        float scaleMultiplier = Random.Range(5f, 10f); // Adjust the range as desired
-        return new Vector3(scaleMultiplierx, scaleMultiplier, scaleMultiplierx);
+        float scaleMultiplierX = Random.Range(10f, 20f); // Random scale multiplier for x and y-axis
+        float scaleMultiplier = Random.Range(5f, 10f); 
+        return new Vector3(scaleMultiplierX, scaleMultiplier, scaleMultiplierX); // Return a random scale vector
     }
 }
