@@ -73,7 +73,21 @@ public class BallController : MonoBehaviour
             }
         }
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Cylinder"))
+        {
+            Debug.Log("cylinder Tag");
+            rb.velocity = Vector3.zero;
+            rb.AddForce(Vector3.up * 50f, ForceMode.Impulse);
+        }
+        else if (collision.gameObject.CompareTag("Cube"))
+        {
+            Debug.Log("Cube Tag");
+            rb.velocity = Vector3.zero;
+            rb.AddForce(Vector3.up * 100f, ForceMode.Impulse);
+        }
+    }
     private void FixedUpdate()
     {
         if (rotatingToZero)

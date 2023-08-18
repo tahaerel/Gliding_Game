@@ -1276,7 +1276,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0032810958, y: -0.49642453, z: 0.0018763616, w: 0.8680717}
+  m_LocalRotation: {x: 0.0032811083, y: -0.49642453, z: 0.0018763691, w: 0.8680717}
   m_LocalPosition: {x: 26.699997, y: 19.9, z: -17.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1348,7 +1348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xLimit: 200
-  zLimit: 2000
+  zLimit: 1000
   obstaclePrefabs:
   - {fileID: 454598968588687196, guid: 902fb5f936c58aa4290ccf3600fd1000, type: 3}
   - {fileID: 7931506997306986759, guid: 2f9c4c70ae9dbd648806acb32a646657, type: 3}
@@ -1883,7 +1883,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859536181}
-  m_LocalRotation: {x: 0.0032810958, y: -0.49642453, z: 0.0018763616, w: 0.8680717}
+  m_LocalRotation: {x: 0.0032811083, y: -0.49642453, z: 0.0018763691, w: 0.8680717}
   m_LocalPosition: {x: 26.699997, y: 19.9, z: -17.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

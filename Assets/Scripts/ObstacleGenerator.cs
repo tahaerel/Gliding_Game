@@ -9,7 +9,7 @@ public class ObstacleGenerator: MonoBehaviour
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private float checkRadius = 38f;
 
-    private const int totalObstacles = 300;
+    private const int totalObstacles = 500;
     private const int maxSpawnAttempts =100;
 
     private void Start()
