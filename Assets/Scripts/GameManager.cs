@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Transform topboneend;
     public GameStatus currentStatus;
     public GameObject Restart_UI;
+
     Vector3 initialPosition; //rocketball position
     public StickController stickcontrol;
 
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
         switch (newStatus)
         {
             case GameStatus.Stick:
+
                 stickcontrol.enabled = false;
                 stickcontrol.IsStickReleased = false;
                 stickcontrol.enabled = true;
@@ -69,6 +71,8 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Fly Status");
                 Rocketball.GetComponent<Animator>().enabled = true;
                 Rocketball.GetComponent<BallController>().enabled = true;
+                BallController.rotatingToZero = false;
+                BallController.isMoving = false;
                 break;
 
             case GameStatus.Death:
@@ -81,7 +85,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Reset Status");
                 Rocketball.transform.rotation = Quaternion.identity;
                 Rocketball.transform.position = initialPosition;
-                Rocketball.GetComponent<Animator>().Play("Armature|2_Close_wings");
+                Rocketball.GetComponent<BallController>().TriggerWingAnimation(false);
                 Rocketball.GetComponent<BallController>().enabled = false;
                 Rocketball.GetComponent<Rigidbody>().isKinematic = true;
                 StickController.Instance.ResetStick();

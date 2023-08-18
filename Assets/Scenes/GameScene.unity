@@ -1055,7 +1055,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 64
   m_CollisionDetection: 0
 --- !u!95 &864230349 stripped
 Animator:
@@ -1075,8 +1075,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swipeForce: 2
-  rotationForce: 2
-  rotationSmoothness: 3
+  rotationForce: 10
+  rotationSmoothness: 4
   wingsAnimator: {fileID: 864230349}
   trailleft: {fileID: 229466950}
   trailright: {fileID: 1611299494}
@@ -1292,7 +1292,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0032810958, y: -0.49642453, z: 0.0018763616, w: 0.8680717}
+  m_LocalRotation: {x: 0.0032811083, y: -0.49642453, z: 0.0018763691, w: 0.8680717}
   m_LocalPosition: {x: 26.699997, y: 19.899996, z: -17.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1372,6 +1372,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   checkRadius: 40
+  totalObstacles: 1000
 --- !u!4 &1081797621
 Transform:
   m_ObjectHideFlags: 0
@@ -1899,7 +1900,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859536181}
-  m_LocalRotation: {x: 0.0032810958, y: -0.49642453, z: 0.0018763616, w: 0.8680717}
+  m_LocalRotation: {x: 0.0032811083, y: -0.49642453, z: 0.0018763691, w: 0.8680717}
   m_LocalPosition: {x: 26.699997, y: 19.899996, z: -17.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

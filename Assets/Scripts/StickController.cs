@@ -35,10 +35,9 @@ public class StickController : MonoBehaviour
       
         if (!IsStickReleased &&  GameManager.instance.currentStatus == GameStatus.Stick)
         {
-               Debug.Log("stick controller UPDATE İÇİ");
-               HandleStickBending();
+            Debug.Log("stick controller UPDATE İÇİ");
+            HandleStickBending();
         }
-       
     }
 
     public void HandleStickBending()

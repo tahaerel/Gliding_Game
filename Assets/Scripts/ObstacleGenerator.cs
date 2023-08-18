@@ -9,7 +9,7 @@ public class ObstacleGenerator: MonoBehaviour
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private float checkRadius = 38f;
 
-    private const int totalObstacles = 500;
+    public  int totalObstacles = 500;
     private const int maxSpawnAttempts =100;
 
     private void Start()
@@ -63,7 +63,7 @@ public class ObstacleGenerator: MonoBehaviour
 
     private Vector3 GetRandomScale()
     {
-        float scaleMultiplier = Random.Range(5f, 12f); // Adjust the range as desired
+        float scaleMultiplier = Random.Range(5f, 10f); // Adjust the range as desired
         return new Vector3(scaleMultiplier, scaleMultiplier, scaleMultiplier);
     }
 }
