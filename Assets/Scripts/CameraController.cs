@@ -5,11 +5,15 @@ public class CameraController : MonoBehaviour
 {
     public CinemachineVirtualCamera virtualCamera;
     private Vector3 targetFollowOffset;
-    private Vector3 currentVelocity; // SmoothDamp için gerekli değişken
+    private Vector3 startVelocity; // SmoothDamp için gerekli değişken
     private bool hasReset = false;
+    CinemachineTransposer transposer;
 
     private void Start()
     {
+        transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+        startVelocity = transposer.m_FollowOffset;
+        Debug.Log("start velocity:"+startVelocity);
         targetFollowOffset = new Vector3(0, 5, -22);
     }
 
@@ -22,24 +26,34 @@ public class CameraController : MonoBehaviour
             SmoothReset();
         }
 
+        if (GameManager.instance.currentStatus == GameStatus.Stick)
+        {
+            Resetcam();
+        }
+
         if (hasReset)
         {
             SmoothReset();
         }
+
     }
 
+    public void Resetcam()
+    {
+        Debug.Log("reset cam");
+        transposer.m_FollowOffset = startVelocity;
+    }
 
     private void SmoothReset()
     {
         if (virtualCamera != null)
         {
-            CinemachineTransposer transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+           
             if (transposer != null)
             {
                // transposer.m_FollowOffset = Vector3.SmoothDamp(transposer.m_FollowOffset, targetFollowOffset, ref currentVelocity, smoothingSpeed);
-                transposer.m_FollowOffset = Vector3.Lerp(transposer.m_FollowOffset, new Vector3(0, 5, -22), .1f);
+                transposer.m_FollowOffset = Vector3.Lerp(transposer.m_FollowOffset, new Vector3(0, 5, -22), .2f);
 
-               
             }
         }
     }

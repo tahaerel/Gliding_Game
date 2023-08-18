@@ -793,8 +793,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Rocketball: {fileID: 864230342}
+  topboneend: {fileID: 1698674656}
   currentStatus: 0
   Restart_UI: {fileID: 1967318323}
+  stickcontrol: {fileID: 308101683}
 --- !u!4 &631502890
 Transform:
   m_ObjectHideFlags: 0
@@ -1009,8 +1011,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736953811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 449.0153}
-  m_LocalScale: {x: 163.62196, y: 32.809326, z: 149.47945}
+  m_LocalPosition: {x: 0, y: -0.0001, z: 1321.3951}
+  m_LocalScale: {x: 163.62196, y: 32.809326, z: 323.95187}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1290,8 +1292,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0032811083, y: -0.49642453, z: 0.0018763691, w: 0.8680717}
-  m_LocalPosition: {x: 26.699997, y: 19.9, z: -17.7}
+  m_LocalRotation: {x: 0.0032810958, y: -0.49642453, z: 0.0018763616, w: 0.8680717}
+  m_LocalPosition: {x: 26.699997, y: 19.899996, z: -17.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1314,7 +1316,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
@@ -1362,7 +1364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xLimit: 200
-  zLimit: 1000
+  zLimit: 2000
   obstaclePrefabs:
   - {fileID: 454598968588687196, guid: 902fb5f936c58aa4290ccf3600fd1000, type: 3}
   - {fileID: 7931506997306986759, guid: 2f9c4c70ae9dbd648806acb32a646657, type: 3}
@@ -1884,7 +1886,7 @@ GameObject:
   - component: {fileID: 1859536182}
   - component: {fileID: 1859536183}
   m_Layer: 0
-  m_Name: Glide_Cam
+  m_Name: Follow_Cam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1897,8 +1899,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859536181}
-  m_LocalRotation: {x: 0.0032811083, y: -0.49642453, z: 0.0018763691, w: 0.8680717}
-  m_LocalPosition: {x: 26.699997, y: 19.9, z: -17.7}
+  m_LocalRotation: {x: 0.0032810958, y: -0.49642453, z: 0.0018763616, w: 0.8680717}
+  m_LocalPosition: {x: 26.699997, y: 19.899996, z: -17.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1989,11 +1991,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.000000029802322
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.000000007450581
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2050,7 +2052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1967318324
 RectTransform:
   m_ObjectHideFlags: 0
