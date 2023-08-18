@@ -1371,8 +1371,9 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
-  checkRadius: 40
-  totalObstacles: 1000
+  checkRadius: 60
+  minDistanceBetweenObstacles: 20
+  totalObstacles: 600
 --- !u!4 &1081797621
 Transform:
   m_ObjectHideFlags: 0

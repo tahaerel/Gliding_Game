@@ -57,7 +57,7 @@ public class BallController : MonoBehaviour
 
                 case TouchPhase.Stationary: // This case handles when the player simply touches the screen without moving
                                             // Perform the same actions as when the player swipes
-                    Vector3 stationaryForce = new Vector3(0f, 0f, 0.1f);
+                    Vector3 stationaryForce = new Vector3(0f, 0f, 0.2f);
                     rb.AddForce(stationaryForce, ForceMode.VelocityChange);
                     isMoving = true;
                     TriggerWingAnimation(true);
@@ -97,14 +97,14 @@ public class BallController : MonoBehaviour
             Debug.Log("cylinder Tag");
             rb.velocity = Vector3.zero;
             rb.AddForce(Vector3.up * 30f, ForceMode.Impulse);
-            rb.AddForce(Vector3.forward * 5f, ForceMode.Impulse);
+            rb.AddForce(Vector3.forward * 10f, ForceMode.Impulse);
         }
         else if (collision.gameObject.CompareTag("Cube"))
         {
             Debug.Log("Cube Tag");
             rb.velocity = Vector3.zero;
             rb.AddForce(Vector3.up * 60f, ForceMode.Impulse);
-            rb.AddForce(Vector3.forward * 10f, ForceMode.Impulse);
+            rb.AddForce(Vector3.forward * 20f, ForceMode.Impulse);
         }
         else if (collision.gameObject.CompareTag("Plane"))
         {
