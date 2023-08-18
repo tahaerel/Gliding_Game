@@ -81,8 +81,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Reset Status");
                 Rocketball.transform.rotation = Quaternion.identity;
                 Rocketball.transform.position = initialPosition;
-                Rocketball.GetComponent<Animator>().SetBool("CloseWing", true);
-                Rocketball.GetComponent<Animator>().enabled = false;
+                Rocketball.GetComponent<Animator>().Play("Armature|2_Close_wings");
                 Rocketball.GetComponent<BallController>().enabled = false;
                 Rocketball.GetComponent<Rigidbody>().isKinematic = true;
                 StickController.Instance.ResetStick();
