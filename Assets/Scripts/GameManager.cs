@@ -4,14 +4,29 @@ public enum GameStatus
 {
     Stick,
     Fly,
-    Death
+    Death,
+    Reset
 }
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject Rocketball;
+    public Transform topboneend;
     public GameStatus currentStatus;
+    public GameObject Restart_UI;
+    Vector3 initialPosition;
+
+   public StickController stickcontrol;
+
+    public void Update()
+    {
+        if (Input.GetKey(KeyCode.B))
+        {
+            ResetGame();
+        }
+    }
+
     private void Awake()
     {
         if (instance == null)
@@ -28,8 +43,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        initialPosition = Rocketball.transform.position;
+        Debug.Log("RocketBall's Initial Position: " + initialPosition);
+
         // Baþlangýçta oyun durumunu 
-        SetGameStatus(GameStatus.Stick);
+       SetGameStatus(GameStatus.Stick);
     }
 
     public void SetGameStatus(GameStatus newStatus)
@@ -40,15 +58,35 @@ public class GameManager : MonoBehaviour
         switch (newStatus)
         {
             case GameStatus.Stick:
-                // Stick durumuyla 
+                stickcontrol.enabled = false;
+                stickcontrol.IsStickReleased = false;
+                stickcontrol.enabled = true;
+                Rocketball.transform.SetParent(topboneend);
+                Restart_UI.SetActive(false);
+                Time.timeScale = 1;
                 break;
             case GameStatus.Fly:
                 // Fly durumu
+                Debug.Log("Fly Status");
+              
                 Rocketball.GetComponent<Animator>().enabled = true;
                 Rocketball.GetComponent<BallController>().enabled = true;
                 break;
             case GameStatus.Death:
-                // Death durumu
+                Debug.Log("Death Status");
+                Time.timeScale = 0;
+                Restart_UI.SetActive(true);
+                break;
+
+
+            case GameStatus.Reset:
+                Debug.Log("Reset Status");
+                Rocketball.transform.rotation = Quaternion.identity;
+                Rocketball.transform.position = initialPosition;
+                Rocketball.GetComponent<Animator>().enabled = false;
+                Rocketball.GetComponent<BallController>().enabled = false;
+                Rocketball.GetComponent<Rigidbody>().isKinematic = true;
+                StickController.Instance.ResetStick();
                 break;
             default:
                 break;
@@ -58,7 +96,11 @@ public class GameManager : MonoBehaviour
     //  metodu çaðýr
     public void ChangeGameStatus(GameStatus newStatus)
     {
+
         SetGameStatus(newStatus);
     }
-
+    public void ResetGame()
+    {
+        SetGameStatus(GameStatus.Reset);
+    }
 }

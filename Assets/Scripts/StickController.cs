@@ -15,8 +15,8 @@ public class StickController : MonoBehaviour
     private float swipeDelta;
     private float swerveAmount = 0.0f;
     public Rigidbody ballRigidbody;
-    public bool IsStickReleased { get; private set; }
-
+    public bool IsStickReleased = false;
+    int a = 0;
     private void Awake()
     {
         Instance = this;
@@ -24,10 +24,7 @@ public class StickController : MonoBehaviour
 
     private void Start()
     {
-       
-
         Application.targetFrameRate = 60;
-
         StickAnimation["Armature|Bend_Stick"].speed = 0;
         StickAnimation["Armature|Bend_Stick"].time = 0;
         StickAnimation.Play("Armature|Bend_Stick");
@@ -35,20 +32,20 @@ public class StickController : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.instance.currentStatus == GameStatus.Stick) // Sadece Stick durumunda çalış
+      
+        if (!IsStickReleased &&  GameManager.instance.currentStatus == GameStatus.Stick)
         {
-            if (!IsStickReleased)
-            {
-                HandleStickBending();
-            }
-        
+               Debug.Log("stick controller UPDATE İÇİ");
+               HandleStickBending();
         }
+       
     }
 
     public void HandleStickBending()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 )
         {
+            Debug.Log("Stick controller İNPUT count" + Input.touchCount);
             Touch touch = Input.GetTouch(0);
 
             switch (touch.phase)
@@ -80,6 +77,7 @@ public class StickController : MonoBehaviour
                         StickAnimation["Armature|Bend_Stick"].speed = 1;
                         StickAnimation.Play("Armature|Release_Stick");
                         IsStickReleased = true;
+                        a++;
                     }
                     break;
             }
@@ -87,7 +85,6 @@ public class StickController : MonoBehaviour
     }
     public void FlightBall()
     {
-
         Vector3 throwDirection = -swipeDirection.normalized;
         if (ballRigidbody != null)
         {
@@ -99,9 +96,6 @@ public class StickController : MonoBehaviour
             ballRigidbody.gameObject.transform.parent = null;
             ballRigidbody.AddForce(transform.up* 10 * ReleaseForce, ForceMode.Impulse);
             ballRigidbody.AddForce(transform.forward * 10 * ReleaseForce, ForceMode.Impulse);
-
-
-
         }
     }
     public void AdjustStickAnimationFrame(float time)
@@ -113,9 +107,9 @@ public class StickController : MonoBehaviour
 
     public void ResetStick()
     {
-        IsStickReleased = false;
-        StickAnimation["Armature|Bend_Stick"].speed = 0;
-        StickAnimation["Armature|Bend_Stick"].time = 0;
-        StickAnimation.Play("Armature|Bend_Stick");
+       StickAnimation["Armature|Bend_Stick"].speed = 0;
+       StickAnimation["Armature|Bend_Stick"].time = 0;
+       StickAnimation.Play("Armature|Bend_Stick");
+       GameManager.instance.SetGameStatus(GameStatus.Stick);
     }
 }

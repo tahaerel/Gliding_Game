@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
@@ -532,6 +532,7 @@ MonoBehaviour:
   SlideSpeed: 0.1
   ReleaseForce: 0
   ballRigidbody: {fileID: 864230346}
+  IsStickReleased: 0
 --- !u!1 &399687810
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +546,7 @@ GameObject:
   - component: {fileID: 399687813}
   - component: {fileID: 399687812}
   m_Layer: 5
-  m_Name: Retry_Button
+  m_Name: Restart_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -615,7 +616,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 399687813}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 631502889}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ResetGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &399687813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,6 +794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rocketball: {fileID: 864230342}
   currentStatus: 0
+  Restart_UI: {fileID: 1967318323}
 --- !u!4 &631502890
 Transform:
   m_ObjectHideFlags: 0
@@ -918,7 +932,7 @@ GameObject:
   - component: {fileID: 736953812}
   m_Layer: 3
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Plane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -996,7 +1010,7 @@ Transform:
   m_GameObject: {fileID: 736953811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0, z: 449.0153}
-  m_LocalScale: {x: 68.09637, y: 32.809326, z: 115.660355}
+  m_LocalScale: {x: 163.62196, y: 32.809326, z: 149.47945}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1076,7 +1090,7 @@ GameObject:
   - component: {fileID: 890605616}
   - component: {fileID: 890605615}
   m_Layer: 5
-  m_Name: Retry_Text(TMP)
+  m_Name: Restart_Text(TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1122,7 +1136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Retry
+  m_text: Restart
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1627,7 +1641,7 @@ GameObject:
   - component: {fileID: 1580252683}
   - component: {fileID: 1580252682}
   m_Layer: 5
-  m_Name: Lose_Text(TMP)
+  m_Name: Restart_Text(TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2031,12 +2045,12 @@ GameObject:
   - component: {fileID: 1967318326}
   - component: {fileID: 1967318325}
   m_Layer: 5
-  m_Name: Lose_Panel
+  m_Name: Restart_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1967318324
 RectTransform:
   m_ObjectHideFlags: 0
