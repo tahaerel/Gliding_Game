@@ -48,7 +48,7 @@ public class BallController : MonoBehaviour
                     float swipeDirection = Mathf.Sign(swipeDelta.x); // Swipe direction (right: 1, left: -1)
 
                     // Calculate force based on swipe direction, only considering the x-axis.
-                    Vector3 force = new Vector3(swipeDirection * swipeForce, 0f, 0f);
+                    Vector3 force = new Vector3(swipeDirection * swipeForce, 0f, 0.05f);
 
                     rb.AddForce(force, ForceMode.VelocityChange); // Apply force to move the ball.
                     isMoving = true;
