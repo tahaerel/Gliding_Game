@@ -48,7 +48,7 @@ public class BallController : MonoBehaviour
                     float swipeDirection = Mathf.Sign(swipeDelta.x); // Swipe direction (right: 1, left: -1)
 
                     // Calculate force based on swipe direction, only considering the x-axis.
-                    Vector3 force = new Vector3(swipeDirection * swipeForce, 0f, 0.1f);
+                    Vector3 force = new Vector3(swipeDirection * swipeForce, 0f, 0f);
 
                     rb.AddForce(force, ForceMode.VelocityChange); // Apply force to move the ball.
                     isMoving = true;
@@ -90,7 +90,7 @@ public class BallController : MonoBehaviour
         wingsAnimator.SetBool("CloseWing", !open); 
         trailleft.enabled = open; 
         trailright.enabled = open; 
-        rb.drag = open ? 0f : 0.5f; // Adjust the drag based on wing status.
+        rb.drag = open ? 1f : 0.2f; // Adjust the drag based on wing status.
 
         if (open)
         {
